@@ -9,3 +9,11 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
+Imports: 
+    magrittr
+Depends: 
+    RDCOMClient (>= 0.94.0)
+Remotes:  
+    OmegaHat/RDCOMClient
