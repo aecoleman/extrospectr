@@ -14,6 +14,11 @@ use [gmailr](http://gmailr.r-lib.org/). However, in a situation where you must
 send or receive an email from your organization email, this may be a good 
 solution.
 
+Many thanks are due to [Duncan Lang](https://github.com/omegahat/), whose 
+[RDCOMClient](https://github.com/omegahat/RDCOMClient) package made this package 
+possible. In many ways, this is simply a wrapper for `RDCOMClient` so that the 
+R user can abstract away the more difficult aspects working with the DCOM API.
+
 ## Installation
 
 You can install the development version of `extrospectr` from github with:
@@ -43,17 +48,17 @@ Which will return a `data.frame` with eight columns. An example (transformed to 
 
 ``` r
 
- # EntryID  Subject  CreationTime        LastModificationTi~ MessageClass Sender ReceivedTime        Content 
- #   <chr>    <chr>    <dttm>              <dttm>              <chr>        <chr>  <dttm>              <chr>   
- # 1 EF00000~ Write a~ 2019-08-13 21:36:38 2019-08-11 15:47:44 IPM.Note     autom~ 2019-08-11 15:47:44 "Your f~
- # 2 EF00000~ Thank y~ 2019-08-13 21:36:38 2019-08-11 18:23:13 IPM.Note     navih~ 2019-08-11 18:23:13 "Dear A~
- # 3 EF00000~ Thank y~ 2019-08-13 21:36:38 2019-08-11 18:24:11 IPM.Note     navih~ 2019-08-11 18:24:11 "Dear A~
- # 4 EF00000~ You hav~ 2019-08-13 21:36:38 2019-08-11 18:31:35 IPM.Note     team@~ 2019-08-11 18:31:35 " <http~
- # 5 EF00000~ Thank y~ 2019-08-13 21:36:38 2019-08-11 18:33:19 IPM.Note     norep~ 2019-08-11 18:33:19 " <http~
+ #  EntryID  Subject  CreationTime     LastModificatio~ MessageClass Sender ReceivedTime     Content 
+ #   <chr>    <chr>    <dttm>           <dttm>           <chr>        <chr>  <dttm>           <chr>   
+ # 1 EF00000~ Write a~ 2019-08-13 21:36 2019-08-11 15:47 IPM.Note     autom~ 2019-08-11 15:47 "Your f~
+ # 2 EF00000~ Thank y~ 2019-08-13 21:36 2019-08-11 18:23 IPM.Note     navih~ 2019-08-11 18:23 "Dear A~
+ # 3 EF00000~ Thank y~ 2019-08-13 21:36 2019-08-11 18:24 IPM.Note     navih~ 2019-08-11 18:24 "Dear A~
+ # 4 EF00000~ You hav~ 2019-08-13 21:36 2019-08-11 18:31 IPM.Note     team@~ 2019-08-11 18:31 " <http~
+ # 5 EF00000~ Thank y~ 2019-08-13 21:36 2019-08-11 18:33 IPM.Note     norep~ 2019-08-11 18:33 " <http~
 
 ```
 Many of the columns are adequately explained by their names, but a few deserve 
-some special explanation.
+some special explanation. Note that the character columns are truncated.
 The `EntryID` column stores a unique identifier that can be used to specify a particular email to other functions. 
 The `CreationTime` column seems to store the time when Outlook downloaded the email from the server.
 The `Content` column stores the first 255 characters of the body of the email. 
