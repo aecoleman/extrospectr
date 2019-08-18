@@ -1,5 +1,8 @@
 #' Save All Attachments
 #'
+#' Save all attachments of a particular email, given some identifier for that
+#' email
+#'
 #' @inheritParams save_attachment
 #' @param save_to_dir character, path to the local directory where the files are to be saved
 #'
@@ -42,12 +45,17 @@ save_all_attachments <- function(mailItem, save_to_dir, must_work = FALSE) {
 
 #' Save Attachment
 #'
+#' Save a particular attachment to a location, given an identifier for the Email
+#' the desired file is attached to, and some identifier for which attached file
+#' to download.
+#'
 #' @param mailItem either a COMIDispatch pointer to a MailItem object, or an EntryID for a MailItem
 #' @param attachment the name (character) or index (integer) of the attachment to be saved
 #' @param save_path character, path to the location where the file should be saved
 #'
-#' @return character, the path where the file was saved, or \code{NA} if a check
-#' determines that the file does not exist, meaning that the file was not saved
+#' @return character, the path where the file was saved, or \code{NA_character_}
+#' if a check determines that the file does not exist, meaning that the file was
+#' not saved
 #' @export
 #'
 save_attachment <- function(mailItem, attachment, save_path, must_work = FALSE) {
@@ -87,11 +95,13 @@ save_attachment <- function(mailItem, attachment, save_path, must_work = FALSE) 
 
 #' Is MailItem
 #'
+#' Returns \code{TRUE} if x is a pointer to a MailItem object, and \code{FALSE}
+#' otherwise.
+#'
 #' @param x object(s) to be checked
 #'
-#' @return logical
+#' @return logical of length equal to the length of \code{x}
 #'
-#' @examples
 .is_MailItem <- function(x) {
 
   if (length(x) > 1) {

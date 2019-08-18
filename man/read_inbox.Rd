@@ -12,11 +12,11 @@ read_inbox(folder_path, with_attachments_only = FALSE,
 
 \item{with_attachments_only}{logical, should the results be filtered to include only emails with attachments?}
 
-\item{count_attachments}{logical, should the number of attachments be returned?}
+\item{count_attachments}{logical, should the number of attachments be returned? (Currently ignored)}
 
 \item{table_filter}{character (optional), additional filters to be applied}
 
-\item{whole_body}{logical, should the entire body of the email be returned? Default is FALSE}
+\item{whole_body}{logical, should the entire body of the email be returned? Default is FALSE (Currently ignored)}
 }
 \value{
 data.frame

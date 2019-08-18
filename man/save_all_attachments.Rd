@@ -15,5 +15,6 @@ save_all_attachments(mailItem, save_to_dir, must_work = FALSE)
 character, vector of paths where attachments have been saved
 }
 \description{
-Save All Attachments
+Save all attachments of a particular email, given some identifier for that
+email
 }

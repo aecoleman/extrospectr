@@ -10,8 +10,9 @@
 \item{x}{object(s) to be checked}
 }
 \value{
-logical
+logical of length equal to the length of \code{x}
 }
 \description{
-Is MailItem
+Returns \code{TRUE} if x is a pointer to a MailItem object, and \code{FALSE}
+otherwise.
 }

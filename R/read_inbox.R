@@ -3,9 +3,9 @@
 #'
 #' @param folder_path character
 #' @param with_attachments_only logical, should the results be filtered to include only emails with attachments?
-#' @param count_attachments logical, should the number of attachments be returned?
+#' @param count_attachments logical, should the number of attachments be returned? (Currently ignored)
 #' @param table_filter character (optional), additional filters to be applied
-#' @param whole_body logical, should the entire body of the email be returned? Default is FALSE
+#' @param whole_body logical, should the entire body of the email be returned? Default is FALSE (Currently ignored)
 #'
 #' @return data.frame
 #' @export
@@ -61,13 +61,11 @@ read_inbox <- function(folder_path, with_attachments_only = FALSE, count_attachm
   ptr.fldr_tbl$MoveToStart()
 
   tbl_ary <-
-    ptr.fldr_tbl$GetArray(n)
-
-  out <-
-    tbl_ary %>%
+    ptr.fldr_tbl$GetArray(n) %>%
     .format_table_array()
 
-  out
+
+  tbl_ary
 
 }
 
@@ -133,11 +131,20 @@ read_inbox <- function(folder_path, with_attachments_only = FALSE, count_attachm
 
 #' Lookup Exchange Sender
 #'
+#' This function is required because the email address of Exchange senders
+#' aren't always displayed in the common `user@domail.com` form, and the SMTP
+#' address form must be looked up for these users.
+#'
 #' @inheritParams .count_attachments
 #'
 #' @return character
 #'
 .lookup_exchange_sender <- function(EntryID, ol = NULL) {
+
+  # NOT USED BUT HERE FOR POSSIBLE FUTURE USE
+  # Property ID for SMTP address
+  # See: https://docs.microsoft.com/en-us/office/vba/outlook/concepts/address-book/obtain-the-e-mail-address-of-a-recipient
+  # PR_SMTP_ADDRESS <- 'http://schemas.microsoft.com/mapi/proptag/0x39FE001E'
 
   if (is.null(ol)) {
     ol <- RDCOMClient::COMCreate('Outlook.Application')$GetNamespace('MAPI')
@@ -165,6 +172,7 @@ read_inbox <- function(folder_path, with_attachments_only = FALSE, count_attachm
         user_type,
         olExchangeDistributionListAddressEntry = ptr.sender$GetExchangeDistributionList()$PrimarySMTPAddress(),
         olExchangeUserAddressEntry = ptr.sender$GetExchangeUser()$PrimarySMTPAddress(),
+        olSmtpAddressEntry = ptr.sender$Address()
         )
   }
 

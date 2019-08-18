@@ -15,5 +15,7 @@
 character
 }
 \description{
-Lookup Exchange Sender
+This function is required because the email address of Exchange senders
+aren't always displayed in the common \code{user@domail.com} form, and the SMTP
+address form must be looked up for these users.
 }

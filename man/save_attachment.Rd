@@ -14,9 +14,12 @@ save_attachment(mailItem, attachment, save_path, must_work = FALSE)
 \item{save_path}{character, path to the location where the file should be saved}
 }
 \value{
-character, the path where the file was saved, or \code{NA} if a check
-determines that the file does not exist, meaning that the file was not saved
+character, the path where the file was saved, or \code{NA_character_}
+if a check determines that the file does not exist, meaning that the file was
+not saved
 }
 \description{
-Save Attachment
+Save a particular attachment to a location, given an identifier for the Email
+the desired file is attached to, and some identifier for which attached file
+to download.
 }
