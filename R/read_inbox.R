@@ -164,7 +164,8 @@ read_inbox <- function(folder_path, with_attachments_only = FALSE, count_attachm
       switch(
         user_type,
         olExchangeDistributionListAddressEntry = ptr.sender$GetExchangeDistributionList()$PrimarySMTPAddress(),
-        ptr.sender$GetExchangeUser()$PrimarySMTPAddress())
+        olExchangeUserAddressEntry = ptr.sender$GetExchangeUser()$PrimarySMTPAddress(),
+        )
   }
 
   out
