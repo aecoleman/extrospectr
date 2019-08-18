@@ -68,3 +68,21 @@ The `Content` column stores the first 255 characters of the body of the email.
 
 It is worth commenting that objects other than Outlook `MailItem`s can end up in your inbox. For example, a calendar invite, or a notice that a sent message was returned undeliverable. The function filters to only `MailItems`, and so these objects won't be displayed.
 
+## Saving Attachments
+
+Description to come...
+
+## Notes
+
+One potential "gotcha" is that `RDCOMClient` must be attached for the functions 
+provided in this package to work properly. If you attach `extrospectr`, then 
+`RCDOMClient` will be attached as well. However, if you attempt to call 
+`extrospectr::read_inbox(...)` while `RDCOMClient` is not attached, you will 
+receive an error.
+
+```
+> extrospectr::read_inbox('me@example.com/Inbox')
+Error in createCOMReference(<pointer: 0x000002363aeacb08>, "COMIDispatch") : 
+  could not find function "createCOMReference"
+Called from: getCOMInstance(name, force = TRUE, silent = TRUE)
+```
