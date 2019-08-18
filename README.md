@@ -59,8 +59,11 @@ Which will return a `data.frame` with eight columns. An example (transformed to 
 ```
 Many of the columns are adequately explained by their names, but a few deserve 
 some special explanation. Note that the character columns are truncated.
+
 The `EntryID` column stores a unique identifier that can be used to specify a particular email to other functions. 
+
 The `CreationTime` column seems to store the time when Outlook downloaded the email from the server.
+
 The `Content` column stores the first 255 characters of the body of the email. 
 
 It is worth commenting that objects other than Outlook `MailItem`s can end up in your inbox. For example, a calendar invite, or a notice that a sent message was returned undeliverable. The function filters to only `MailItems`, and so these objects won't be displayed.
